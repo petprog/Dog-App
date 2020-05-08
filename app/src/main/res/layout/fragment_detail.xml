@@ -8,5 +8,13 @@
         android:layout_height="match_parent"
         tools:context=".view.DetailFragment">
 
+        <ImageView
+            android:id="@+id/detail_dogImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:minHeight="200dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
     </RelativeLayout>
 </layout>
