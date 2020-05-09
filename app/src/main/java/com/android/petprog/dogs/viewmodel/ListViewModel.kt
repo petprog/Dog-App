@@ -17,9 +17,9 @@ class ListViewModel : ViewModel() {
             DogBreed("3", "White Fox", "10 years", "breedGroup3", "bredFor3", "temperament3", "")
 
         val dogList = arrayListOf<DogBreed>(dog1, dog2, dog3)
-        dogs.value = dogList
+//        dogs.value = dogList
         dogLoadError.value = false
-        loading.value = false
+        loading.value = true
     }
 
 }
