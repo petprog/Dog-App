@@ -3,23 +3,49 @@ package com.android.petprog.dogs.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.petprog.dogs.model.DogBreed
+import com.android.petprog.dogs.model.DogsApiService
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 
 class ListViewModel : ViewModel() {
+
+    private val dogsService = DogsApiService()
+    private val disposable = CompositeDisposable()
 
     val dogs = MutableLiveData<List<DogBreed>>()
     val dogLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
     fun refresh() {
-        val dog1 = DogBreed("1", "Corgi", "12 years", "breedGroup1", "bredFor1", "temperament1", "")
-        val dog2 = DogBreed("2", "Fui", "7 years", "breedGroup2", "bredFor2", "temperament2", "")
-        val dog3 =
-            DogBreed("3", "White Fox", "10 years", "breedGroup3", "bredFor3", "temperament3", "")
-
-        val dogList = arrayListOf<DogBreed>(dog1, dog2, dog3)
-        dogs.value = dogList
-        dogLoadError.value = false
-        loading.value = false
+        fetchFromRemote()
     }
 
+    private fun fetchFromRemote() {
+        loading.value = true
+        disposable.add(
+            dogsService.getDogs()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<List<DogBreed>>() {
+                    override fun onSuccess(dogList: List<DogBreed>) {
+                        dogs.value = dogList
+                        dogLoadError.value = false
+                        loading.value = false
+                    }
+
+                    override fun onError(e: Throwable) {
+                        dogLoadError.value = true
+                        loading.value = false
+                        e.printStackTrace()
+                    }
+                })
+        )
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
+    }
 }
