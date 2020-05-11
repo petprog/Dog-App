@@ -30,9 +30,7 @@ class ListViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<List<DogBreed>>() {
                     override fun onSuccess(dogList: List<DogBreed>) {
-                        dogs.value = dogList
-                        dogLoadError.value = false
-                        loading.value = false
+                        storeDogsLocally(dogList)
                     }
 
                     override fun onError(e: Throwable) {
@@ -42,6 +40,16 @@ class ListViewModel : ViewModel() {
                     }
                 })
         )
+    }
+
+    private fun dogsRetrieved(dogList: List<DogBreed>) {
+        dogs.value = dogList
+        dogLoadError.value = false
+        loading.value = false
+    }
+
+    private fun storeDogsLocally(list: List<DogBreed>) {
+
     }
 
     override fun onCleared() {
