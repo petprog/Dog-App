@@ -13,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
             android:minHeight="200dp"
             android:scaleType="fitCenter"
             app:srcCompat="@android:drawable/btn_star_big_on" />

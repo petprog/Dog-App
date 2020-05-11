@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.android.petprog.dogs.R
+import com.android.petprog.dogs.util.getProgressDrawable
+import com.android.petprog.dogs.util.loadImage
 import com.android.petprog.dogs.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
 
@@ -37,10 +39,14 @@ class DetailFragment : Fragment() {
         viewModel.fetch(dogUuid)
         viewModel.dog.observe(viewLifecycleOwner, Observer { dog ->
             dog.let {
-                detail_dogName.text = dog.dogBreed
-                detail_dogPurpose.text = dog.bredFor
-                detail_dogTemperament.text = dog.temperament
-                detail_dogLifespan.text = dog.lifeSpan
+                if(dog != null) {
+                    detail_dogName.text = dog.dogBreed
+                    detail_dogPurpose.text = dog.bredFor
+                    detail_dogTemperament.text = dog.temperament
+                    detail_dogLifespan.text = dog.lifeSpan
+                    detail_dogImage.loadImage(dog.imageUrl, getProgressDrawable(detail_dogImage.context))
+                }
+
             }
         })
     }

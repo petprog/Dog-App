@@ -1,25 +1,26 @@
 package com.android.petprog.dogs.viewmodel
 
+import android.app.Application
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.android.petprog.dogs.model.DogBreed
+import com.android.petprog.dogs.model.DogDatabase
+import kotlinx.coroutines.launch
 
-class DetailViewModel: ViewModel() {
+private const val TAG = "DetailViewModel"
+class DetailViewModel(application: Application) : BaseViewModel(application) {
 
     val dog = MutableLiveData<DogBreed>()
 
+    fun fetch(uuid: Int) {
+        launch {
+            val dogData = DogDatabase(getApplication()).dogDao().getDog(uuid)
+            Log.d(TAG, dogData.toString())
+            dog.value = dogData
+        }
 
-    fun fetch(position: Int) {
-        val dog1 = DogBreed("1", "Corgi", "12 years", "breedGroup1", "bredFor1", "temperament1", "")
-        val dog2 = DogBreed("2", "Fui", "7 years", "breedGroup2", "bredFor2", "temperament2", "")
-        val dog3 =
-            DogBreed("3", "White Fox", "10 years", "breedGroup3", "bredFor3", "temperament3", "")
-
-        val dogList = arrayListOf(dog1, dog2, dog3)
-        dog.value = dogList[position]
 
     }
-
 
 
 }
