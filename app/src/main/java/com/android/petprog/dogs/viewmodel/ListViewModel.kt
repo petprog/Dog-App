@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.android.petprog.dogs.model.DogBreed
 import com.android.petprog.dogs.model.DogDatabase
 import com.android.petprog.dogs.model.DogsApiService
+import com.android.petprog.dogs.util.NotificationsHelper
 import com.android.petprog.dogs.util.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -64,6 +65,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                 .subscribeWith(object : DisposableSingleObserver<List<DogBreed>>() {
                     override fun onSuccess(dogList: List<DogBreed>) {
                         storeDogsLocally(dogList)
+                        NotificationsHelper(getApplication()).createNotification()
                     }
 
                     override fun onError(e: Throwable) {
