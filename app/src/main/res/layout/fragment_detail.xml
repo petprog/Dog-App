@@ -6,11 +6,17 @@
         <variable
             name="dog"
             type="com.android.petprog.dogs.model.DogBreed" />
+
+        <variable
+            name="palette"
+            type="com.android.petprog.dogs.model.DogPalette" />
+
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@{palette.backgroundColour}"
         tools:context=".view.DetailFragment">
 
         <ImageView
@@ -31,6 +37,7 @@
             android:layout_below="@id/detail_dogImage"
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
+            android:textColor="@{palette.textColor}"
             android:text="@{dog.dogBreed}"
             tools:text="Dog name" />
 
@@ -43,6 +50,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
             android:text="@{dog.bredFor}"
+            android:textColor="@{palette.otherTextColor}"
             tools:text="Dog purpose" />
 
         <TextView
@@ -53,6 +61,7 @@
             android:layout_below="@id/detail_dogPurpose"
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
+            android:textColor="@{palette.otherTextColor}"
             android:text="@{dog.temperament}"
             tools:text="Dog temperament" />
 
@@ -64,6 +73,7 @@
             android:layout_below="@id/detail_dogTemperament"
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
+            android:textColor="@{palette.otherTextColor}"
             android:text="@{dog.lifeSpan}"
             tools:text="Dog lifespan" />
 
