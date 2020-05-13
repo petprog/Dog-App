@@ -1,5 +1,6 @@
 package com.android.petprog.dogs.view
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import android.graphics.Bitmap
@@ -103,6 +104,7 @@ class DetailFragment : Fragment() {
         inflater.inflate(R.menu.menu_detail, menu)
     }
 
+    @SuppressLint("DefaultLocale")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_send_sms -> {
@@ -111,7 +113,17 @@ class DetailFragment : Fragment() {
                 (activity as MainActivity).checkSmsPermission()
             }
             R.id.action_share -> {
-
+                val action = Intent.ACTION_SEND
+                val intent = Intent()
+                intent.action = action
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Check out this dog breed")
+                intent.putExtra(
+                    Intent.EXTRA_TEXT,
+                    "${currentDog?.dogBreed} bred for ${currentDog?.bredFor?.toLowerCase()}."
+                )
+                intent.putExtra(Intent.EXTRA_STREAM, currentDog?.imageUrl)
+                startActivity(Intent.createChooser(intent, "Share with"))
             }
         }
         return super.onOptionsItemSelected(item)
@@ -136,13 +148,13 @@ class DetailFragment : Fragment() {
 
                 AlertDialog.Builder(it)
                     .setView(smsDialogBinding.root)
-                    .setPositiveButton("Send SMS") { dialog, which ->
+                    .setPositiveButton("Send SMS") { _, _ ->
                         if (!smsDialogBinding.smsDestination.text.isNullOrEmpty()) {
                             smsInfo.to = smsDialogBinding.smsDestination.text.toString()
                             sendSms(smsInfo)
                         }
                     }
-                    .setNegativeButton("Cancel") { dialog, which ->
+                    .setNegativeButton("Cancel") { _, _ ->
 
                     }
                     .show()
