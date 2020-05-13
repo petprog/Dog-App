@@ -48,5 +48,5 @@ data class DogPalette(var backgroundColour: Int, var textColor: Int, var otherTe
 data class SmsInfo(
     var to: String,
     var text: String,
-    var imageUrl: String
+    var imageUrl: String?
 )
