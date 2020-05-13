@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        android:defaultValue="10"
+        android:inputType="number"
+        android:key="pref_cache_duration"
+        android:singleLine="true"
+        android:title="Cache durations in seconds"
+        android:selectable="true" />
+
+</PreferenceScreen>

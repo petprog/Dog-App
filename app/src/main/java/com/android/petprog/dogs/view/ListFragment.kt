@@ -1,12 +1,11 @@
 package com.android.petprog.dogs.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.petprog.dogs.R
 import com.android.petprog.dogs.viewmodel.ListViewModel
@@ -22,6 +21,7 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
@@ -36,7 +36,7 @@ class ListFragment : Fragment() {
         refreshLayout.setOnRefreshListener {
             dogsList.visibility = View.GONE
             listError.visibility = View.GONE
-            loadingView.visibility= View.VISIBLE
+            loadingView.visibility = View.VISIBLE
             viewModel.refreshBypassCache()
             refreshLayout.isRefreshing = false
         }
@@ -60,11 +60,26 @@ class ListFragment : Fragment() {
         viewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
             isLoading.let {
                 loadingView.visibility = if (it) View.VISIBLE else View.GONE
-                if(it) {
+                if (it) {
                     listError.visibility = View.GONE
                     dogsList.visibility = View.GONE
                 }
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_settings -> {
+                val action = ListFragmentDirections.actionListFragmentToSettingsFragment()
+                view?.let { Navigation.findNavController(it).navigate(action) }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
