@@ -43,10 +43,10 @@ class MainActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                     .setTitle("Send SMS permission")
                     .setMessage("This app requires access to send an sms")
-                    .setPositiveButton("Ask me") { dialog, which ->
+                    .setPositiveButton("Ask me") { _, _ ->
                         requestSmsPermission()
                     }
-                    .setNegativeButton("No") { dialog, which ->
+                    .setNegativeButton("No") { _, _ ->
                         notifyDetailFragment(false)
 
                     }.show()
