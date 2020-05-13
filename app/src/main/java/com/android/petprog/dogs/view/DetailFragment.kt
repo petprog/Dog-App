@@ -3,9 +3,7 @@ package com.android.petprog.dogs.view
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -38,6 +36,7 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
         return dataBinding.root
@@ -78,12 +77,30 @@ class DetailFragment : Fragment() {
                             val intBackgroundColor = palette?.lightMutedSwatch?.rgb ?: 0
                             val intTextColor = palette?.darkMutedSwatch?.rgb ?: 1
                             val intOtherTextColor = palette?.darkMutedSwatch?.rgb ?: 1
-                            val myPalette = DogPalette(intBackgroundColor, intTextColor, intOtherTextColor)
+                            val myPalette =
+                                DogPalette(intBackgroundColor, intTextColor, intOtherTextColor)
                             dataBinding.palette = myPalette
                         }
                 }
 
             })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_detail, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.action_send_sms -> {
+
+            }
+            R.id.action_share -> {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
