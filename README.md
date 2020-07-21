@@ -4,6 +4,22 @@ A simple Android app to know about dogs and their breeds.
 The data is collected from [a json file](https://raw.githubusercontent.com/DevTides/DogsApi/master/dogs.json)
 An app built on type implemented using MVVM pattern, Retrofit2, LiveData, ViewModel, Coroutines, Room, Rx-Java, Navigation Components and Data Binding.
 
+## 📸 Screenshots
+<div>
+  
+<div style="background-color:rgb(169,169,169); text-align:center">
+  <img src="art/01.jpg" width="300" style="border-radius: 15px">
+  <img src="art/02.jpg" width="300" style="border-radius: 15px">
+  <img src="art/03.jpg" width="300" style="border-radius: 15px">
+</div>
+<div style="background-color:rgb(169,169,169); text-align:center">
+  <img src="art/04.jpg" width="300" style="border-radius: 15px">
+  <img src="art/05.jpg" width="300" style="border-radius: 15px">
+  <img src="art/gif.gif" width="300">
+</div>
+  
+</div>
+
 ## 💻 Requirements
 * Any Operating System (i.e MacOS X, Linux, Windows)
 * An IDE (Android Studio)
