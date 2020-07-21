@@ -1,4 +1,4 @@
-[![Twitter Follow](https://img.shields.io/twitter/follow/petprog?style=social)](https://twitter.com/petprog) [![BCH compliance](https://bettercodehub.com/edge/badge/petprog/Dog-App?branch=master)](https://bettercodehub.com/)
+[![Twitter Follow](https://img.shields.io/twitter/follow/petprog?style=social)](https://twitter.com/petprog) [![BCH compliance](https://bettercodehub.com/edge/badge/petprog/Dog-App?branch=master)](https://bettercodehub.com/) [![GitHub](https://img.shields.io/github/license/petprog/Dog-App)](https://github.com/petprog/Dog-App/blob/master/LICENSE)
 # Dog-App
 A simple Android app to know about dogs and their breeds.
 The data is collected from [a json file](https://raw.githubusercontent.com/DevTides/DogsApi/master/dogs.json)
