@@ -26,4 +26,7 @@ The architecture of this application relies and complies with the following poin
 * [Data Binding](https://developer.android.com/topic/libraries/data-binding/) to declaratively bind UI components in layouts to data sources.
 * [Room](https://developer.android.com/topic/libraries/architecture/room) persistence library which provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite.
 
+## 🔖 License
+[Apache-2.0](https://github.com/petprog/Dog-App/blob/master/LICENSE)
+
 
