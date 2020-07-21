@@ -2,6 +2,7 @@ package com.android.petprog.dogs.viewmodel
 
 import android.app.Application
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.petprog.dogs.model.DogBreed
 import com.android.petprog.dogs.model.DogDatabase
@@ -27,7 +28,8 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     private val dogsService = DogsApiService()
     private val disposable = CompositeDisposable()
 
-    val dogs = MutableLiveData<List<DogBreed>>()
+    private val dogList = MutableLiveData<List<DogBreed>>()
+    val dogs: LiveData<List<DogBreed>>  = dogList
     val dogLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
@@ -87,7 +89,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun dogsRetrieved(dogList: List<DogBreed>) {
-        dogs.value = dogList
+        this.dogList.value = dogList
         dogLoadError.value = false
         loading.value = false
     }
